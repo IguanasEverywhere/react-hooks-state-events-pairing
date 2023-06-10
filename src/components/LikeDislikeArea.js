@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function LikeDislikeArea({ upvotes, downvotes }) {
+function LikeDislikeArea({ upvotes=0, downvotes=0 }) {
 
   const [likes, setLikes] = useState(upvotes);
   const [dislikes, setDislikes] = useState(downvotes);

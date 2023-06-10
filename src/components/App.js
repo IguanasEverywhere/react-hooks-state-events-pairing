@@ -7,12 +7,29 @@ function App() {
   console.log("Here's your data:", video);
 
   const [commentsVisible, setCommentsVisible] = useState(true);
+  const [commentsToRender, setCommentsToRender] = useState(video.comments);
+
+  function filterCommentsByAuthor(formData) {
+    let filteredComments = commentsToRender.filter((vid) => vid.user.includes(formData));
+    setCommentsToRender(filteredComments)
+  }
+
+  function resetAllComments() {
+    setCommentsToRender(video.comments);
+  }
+
 
   return (
     <div className="App">
       <VideoArea video={video} commentsVisible={commentsVisible} setCommentsVisible={setCommentsVisible} />
       <hr></hr>
-      {commentsVisible ? <VideoCommentsArea video={video} /> : null}
+      {commentsVisible ?
+        <VideoCommentsArea
+          comments={commentsToRender}
+          filterCommentsByAuthor={filterCommentsByAuthor}
+          resetAllComments={resetAllComments}
+        />
+        : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 
+
 function CommentsArea({ comments }) {
 
   const vidComments = comments.map((comment) =>
