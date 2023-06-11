@@ -9,6 +9,7 @@ function App() {
   const [commentsVisible, setCommentsVisible] = useState(true);
   const [commentsToRender, setCommentsToRender] = useState(video.comments);
 
+
   function filterCommentsByAuthor(formData) {
     let filteredComments = commentsToRender.filter((vid) => vid.user.includes(formData));
     setCommentsToRender(filteredComments)
@@ -28,12 +29,28 @@ function App() {
     setCommentsToRender(filteredComments);
   }
 
+  function compareAuthor(a, b) {
+    if (a.user < b.user) {
+      return -1;
+    }
+    if (a.user > b.user) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function sortComments() {
+    let sortedComments = [...commentsToRender]; // make copy because we can't mutate state directly
+    sortedComments.sort(compareAuthor);
+    setCommentsToRender(sortedComments);
+  }
 
   return (
     <div className="App">
       <VideoArea video={video} commentsVisible={commentsVisible} setCommentsVisible={setCommentsVisible} />
       <hr></hr>
       <input onChange={handleOtherInput} type="text" placeholder="other input"></input>
+      <button onClick={sortComments}>Sort Comments By Author</button>
       {commentsVisible ?
         <VideoCommentsArea
           comments={commentsToRender}

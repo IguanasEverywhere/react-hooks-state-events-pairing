@@ -23,7 +23,7 @@ function SearchForm({ filterCommentsByAuthor, resetAllComments }) {
     <form onSubmit={handleSearchSubmit}>
       <input onChange={handleSearchFormChange} type='text' placeholder='Search Comments...' value={formData}></input>
       <input type="submit"></input>
-      <button onClick={viewAllComments}>View All Comments</button>
+      <button onClick={viewAllComments}>View All Unsorted Comments</button>
     </form>
   )
 }
