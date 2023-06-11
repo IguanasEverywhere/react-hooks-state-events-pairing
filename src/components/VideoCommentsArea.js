@@ -3,13 +3,13 @@ import SearchForm from './SearchForm';
 import CommentsHeader from './CommentsHeader';
 import CommentsArea from './CommentsArea';
 
-function VideoCommentsArea({ comments, filterCommentsByAuthor, resetAllComments }) {
+function VideoCommentsArea({ comments, filterCommentsByAuthor, resetAllComments, filterAfterDelete }) {
 
   return (
     <div>
       <SearchForm filterCommentsByAuthor={filterCommentsByAuthor} resetAllComments={resetAllComments}/>
       <CommentsHeader numOfComments={comments.length}/>
-      <CommentsArea comments={comments}/>
+      <CommentsArea filterAfterDelete={filterAfterDelete} comments={comments}/>
     </div>
   )
 }

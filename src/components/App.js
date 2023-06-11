@@ -18,16 +18,28 @@ function App() {
     setCommentsToRender(video.comments);
   }
 
+  function  handleOtherInput(e) {
+    let filteredComments = video.comments.filter((vid) => vid.user.includes(e.target.value));
+    setCommentsToRender(filteredComments)
+  }
+
+  function filterAfterDelete(id) {
+    let filteredComments = commentsToRender.filter((vid) => vid.id !== id);
+    setCommentsToRender(filteredComments);
+  }
+
 
   return (
     <div className="App">
       <VideoArea video={video} commentsVisible={commentsVisible} setCommentsVisible={setCommentsVisible} />
       <hr></hr>
+      <input onChange={handleOtherInput} type="text" placeholder="other input"></input>
       {commentsVisible ?
         <VideoCommentsArea
           comments={commentsToRender}
           filterCommentsByAuthor={filterCommentsByAuthor}
           resetAllComments={resetAllComments}
+          filterAfterDelete={filterAfterDelete}
         />
         : null}
     </div>
